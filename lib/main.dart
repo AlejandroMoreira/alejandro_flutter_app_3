@@ -1,3 +1,4 @@
+import 'package:alejandroflutterapp3/widgets/category_meals_view.dart';
 import 'package:flutter/material.dart';
 
 import 'views/category_view.dart';
@@ -28,7 +29,10 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: CategoryView(),
+      routes: {
+        "/": (_) => CategoryView(), //home
+        "/categories-meals": (_) => CategoryMealsView(),
+      },
     );
   }
 }
