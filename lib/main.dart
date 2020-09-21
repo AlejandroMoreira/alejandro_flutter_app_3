@@ -1,6 +1,6 @@
-import 'file:///C:/Users/user/Desktop/AlejandroMoreira/Cosas_de_Flutter/proyectos/alejandro_flutter_app_3/lib/views/category_meals_view.dart';
 import 'package:flutter/material.dart';
 
+import './views/category_meals_view.dart';
 import 'views/category_view.dart';
 
 void main() => runApp(MyApp());
