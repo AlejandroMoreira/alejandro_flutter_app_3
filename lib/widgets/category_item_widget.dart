@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CategoryItem extends StatelessWidget {
+class CategoryItemWidget extends StatelessWidget {
   final String title;
   final Color color;
   final String id;
 
-  CategoryItem(this.title, this.color, this.id);
+  CategoryItemWidget(this.title, this.color, this.id);
 
   void selectCategory(BuildContext context) {
     Navigator.of(context).pushNamed(

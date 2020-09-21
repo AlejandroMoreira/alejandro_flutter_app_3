@@ -3,13 +3,13 @@ import 'package:flutter/foundation.dart';
 enum Complexity {
   Simple,
   Challenging,
-  Hard,
+  Hard
 }
 
 enum Affordability {
   Affordable,
   Pricey,
-  Luxurious,
+  Luxurious
 }
 
 class Meal {
