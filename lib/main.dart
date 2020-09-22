@@ -90,7 +90,7 @@ class _MyHomeState extends State<MyHome> {
         "/": (_) => TabsView(), //home
         "/categories-meals": (_) => CategoryMealsView(_avaliableMeals),
         "/categories-meals-details": (_) => MealDetailView(),
-        "/draw-filters-view": (_) => FiltersView(_setFilters),
+        "/draw-filters-view": (_) => FiltersView(_setFilters,_filters),
       },
       //Si trata de acceder a una ruta que no existe devuelve CategoryView
       onGenerateRoute: (settings) {
