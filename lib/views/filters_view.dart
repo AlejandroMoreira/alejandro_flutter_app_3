@@ -2,6 +2,12 @@ import 'package:alejandroflutterapp3/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 
 class FiltersView extends StatefulWidget {
+
+  final Function setFilters;
+  final Map<String,bool> currentFilters;
+
+  FiltersView(this.setFilters, this.currentFilters);
+
   @override
   _FiltersViewState createState() => _FiltersViewState();
 }
@@ -13,10 +19,33 @@ class _FiltersViewState extends State<FiltersView> {
   var _lactoseFree = false;
 
   @override
+  void initState() {
+    _glutenFree = widget.currentFilters["gluten"];
+    _vegetarian = widget.currentFilters["vegetarian"];
+    _vegan = widget.currentFilters["vegan"];
+    _glutenFree = widget.currentFilters["gluten"];
+
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Your Filters"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: (){
+              final seletedFilters = {
+                "gluten": _glutenFree,
+                "lactose": _lactoseFree,
+                "vegan": _vegan,
+                "vegetarian": _vegetarian,
+              };
+              widget.setFilters(seletedFilters);
+            },
+          ),
+        ],
       ),
       drawer: DrawerWidget(),
       body: Column(

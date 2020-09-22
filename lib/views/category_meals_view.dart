@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../data/dummy_data.dart';
 import '../modules/meal.dart';
 import '../widgets/meal_item_widget.dart';
 
 class CategoryMealsView extends StatefulWidget {
+
+  final List<Meal> avaliableMeals;
+
+  CategoryMealsView(this.avaliableMeals);
+
 //  final String categoryId;
 //  final String categoryTitle;
 //
@@ -26,7 +30,7 @@ class _CategoryMealsViewState extends State<CategoryMealsView> {
     categoryTitle = args["title"];
     final categoryId = args["id"];
 
-    displayedMeals = DUMMY_MEALS.where((element) {
+    displayedMeals = widget.avaliableMeals.where((element) {
       return element.categories.contains(categoryId);
     }).toList();
 
