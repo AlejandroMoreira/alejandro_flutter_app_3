@@ -10,15 +10,21 @@ class MealItemWidget extends StatelessWidget {
   final Affordability affordability;
 
   final String id;
+  final Function removeItem;
 
   MealItemWidget(this.title, this.imageUrl, this.duration, this.complexity,
-      this.affordability, this.id);
+      this.affordability, this.id, this.removeItem);
 
   void selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(
-      "/categories-meals-details",
-      arguments: (id),
-    );
+    Navigator.of(context)
+        .pushNamed(
+          "/categories-meals-details",
+          arguments: (id),
+        )
+        .then((value) => {
+              //Cuando hacemos el back
+              if (value != null) removeItem(value)
+            });
   }
 
   String get complexityText {

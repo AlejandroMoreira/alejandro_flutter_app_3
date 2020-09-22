@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import './views/category_meals_view.dart';
 import 'views/category_view.dart';
 import 'views/meal_detail_view.dart';
+import 'views/tabs_view.dart';
+import 'views/filters_view.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,15 +37,17 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   decoration: TextDecoration.underline),
             ),
+        focusColor: Colors.yellow,
+        bottomAppBarColor: Colors.white,
       ),
       routes: {
-        "/": (_) => CategoryView(), //home
+        "/": (_) => TabsView(), //home
         "/categories-meals": (_) => CategoryMealsView(),
         "/categories-meals-details": (_) => MealDetailView(),
+        "/draw-filters-view": (_) => FiltersView(),
       },
       //Si trata de acceder a una ruta que no existe devuelve CategoryView
       onGenerateRoute: (settings) {
-        print(settings.arguments);
         return MaterialPageRoute(
           builder: (context) => CategoryView(),
         );

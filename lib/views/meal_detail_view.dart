@@ -47,7 +47,7 @@ class MealDetailView extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            buildSectionTitle(context, "Ingridients"),
+            buildSectionTitle(context, "Ingredients"),
             buildContainer(
               ListView.builder(
                 itemBuilder: (context, index) {
@@ -85,6 +85,12 @@ class MealDetailView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.delete),
+        onPressed: () {
+          Navigator.of(context).pop(mealId); //Back button
+        },
       ),
     );
   }
