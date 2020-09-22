@@ -9,10 +9,17 @@ class MealItemWidget extends StatelessWidget {
   final Complexity complexity;
   final Affordability affordability;
 
-  MealItemWidget(this.title, this.imageUrl, this.duration, this.complexity,
-      this.affordability);
+  final String id;
 
-  void selectMeal() {}
+  MealItemWidget(this.title, this.imageUrl, this.duration, this.complexity,
+      this.affordability, this.id);
+
+  void selectMeal(BuildContext context) {
+    Navigator.of(context).pushNamed(
+      "/categories-meals-details",
+      arguments: (id),
+    );
+  }
 
   String get complexityText {
     switch (complexity) {
@@ -132,7 +139,7 @@ class MealItemWidget extends StatelessWidget {
           ],
         ),
       ),
-      onTap: selectMeal,
+      onTap: () => selectMeal(context),
     );
   }
 }

@@ -31,7 +31,8 @@ class CategoryMealsView extends StatelessWidget {
                 categoryMeals[index].imageUrl,
                 categoryMeals[index].duration,
                 categoryMeals[index].complexity,
-                categoryMeals[index].affordability);
+                categoryMeals[index].affordability,
+                categoryMeals[index].id);
           },
           itemCount: categoryMeals.length,
         ));
