@@ -1,28 +1,41 @@
 import 'package:flutter/material.dart';
 
-import 'favorites.dart';
+import 'favorites_view.dart';
 import 'category_view.dart';
 import '../widgets/drawer_widget.dart';
+import '../modules/meal.dart';
 
 class TabsView extends StatefulWidget {
+  final List<Meal> favoritesMeals;
+
+  TabsView(this.favoritesMeals);
+
   @override
   _TabsViewState createState() => _TabsViewState();
 }
 
 class _TabsViewState extends State<TabsView> {
-  final List<Map<String, Object>> _views = [
-    {
-      "page": CategoryView(),
-      "title": "Categories",
-    },
-    {
-      "page": Favorites(),
-      "title": "Favorites",
-    },
-  ];
+
+  List<Map<String, Object>> _views;
 
   int _selectedView = 0;
   Color selectedItemColor = Colors.blue;
+
+
+  @override
+  void initState() {
+    _views = [
+      {
+        "page": CategoryView(),
+        "title": "Categories",
+      },
+      {
+        "page": FavoritesView(widget.favoritesMeals),
+        "title": "Favorites",
+      },
+    ];
+    super.initState();
+  }
 
   void _selectPage(int index) {
     setState(() {

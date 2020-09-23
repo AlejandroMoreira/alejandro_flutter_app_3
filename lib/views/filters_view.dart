@@ -1,10 +1,10 @@
-import 'package:alejandroflutterapp3/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 
-class FiltersView extends StatefulWidget {
+import '../widgets/drawer_widget.dart';
 
+class FiltersView extends StatefulWidget {
   final Function setFilters;
-  final Map<String,bool> currentFilters;
+  final Map<String, bool> currentFilters;
 
   FiltersView(this.setFilters, this.currentFilters);
 
@@ -18,6 +18,8 @@ class _FiltersViewState extends State<FiltersView> {
   var _vegan = false;
   var _lactoseFree = false;
 
+  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     _glutenFree = widget.currentFilters["gluten"];
@@ -27,15 +29,27 @@ class _FiltersViewState extends State<FiltersView> {
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         title: Text("Your Filters"),
         actions: [
           IconButton(
             icon: Icon(Icons.save),
-            onPressed: (){
+            onPressed: () {
+              scaffoldKey.currentState.showSnackBar(SnackBar(
+                content: Text('Filters saved'),
+                duration: Duration(seconds: 2),
+                action: SnackBarAction(
+                  label: "OK",
+                  onPressed:(){
+                  }
+                ),
+              ));
+
               final seletedFilters = {
                 "gluten": _glutenFree,
                 "lactose": _lactoseFree,

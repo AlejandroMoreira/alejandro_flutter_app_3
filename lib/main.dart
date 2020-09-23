@@ -33,6 +33,7 @@ class _MyHomeState extends State<MyHome> {
   };
 
   List<Meal> _avaliableMeals = DUMMY_MEALS;
+  List<Meal> _favoritesMeals = [];
 
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
@@ -53,6 +54,26 @@ class _MyHomeState extends State<MyHome> {
         return true;
       }).toList();
     });
+  }
+
+  void _toggleFavorite(String mealId) {
+    final existingIndex =
+        _favoritesMeals.indexWhere((element) => element.id == mealId);
+
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoritesMeals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favoritesMeals
+            .add(DUMMY_MEALS.firstWhere((element) => element.id == mealId));
+      });
+    }
+  }
+
+  bool _isMealFavorite(String id) {
+    return _favoritesMeals.any((element) => element.id == id);
   }
 
   @override
@@ -87,10 +108,10 @@ class _MyHomeState extends State<MyHome> {
         bottomAppBarColor: Colors.white,
       ),
       routes: {
-        "/": (_) => TabsView(), //home
+        "/": (_) => TabsView(_favoritesMeals), //home
         "/categories-meals": (_) => CategoryMealsView(_avaliableMeals),
-        "/categories-meals-details": (_) => MealDetailView(),
-        "/draw-filters-view": (_) => FiltersView(_setFilters,_filters),
+        "/categories-meals-details": (_) => MealDetailView(_toggleFavorite,_isMealFavorite),
+        "/draw-filters-view": (_) => FiltersView(_setFilters, _filters),
       },
       //Si trata de acceder a una ruta que no existe devuelve CategoryView
       onGenerateRoute: (settings) {
